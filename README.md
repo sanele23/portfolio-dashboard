@@ -1,6 +1,8 @@
 # Portfolio Dashboard
 
-A Google Workspace-inspired personal portfolio application built with React, Tailwind CSS, and Framer Motion. Features a clean dashboard layout with a collapsible sidebar, smooth page transitions, and a fully responsive design.
+🔗 **Live Demo:** [sanele23.github.io/portfolio-dashboard](https://sanele23.github.io/portfolio-dashboard/)
+
+A Google Workspace-inspired personal portfolio application built with React, Tailwind CSS, and Framer Motion. Features a clean dashboard layout with a collapsible sidebar, smooth page transitions, dark/light theme toggle, and a fully responsive design.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)
@@ -13,7 +15,9 @@ A Google Workspace-inspired personal portfolio application built with React, Tai
 - **Google Workspace Aesthetic** — Clean whites, subtle greys (#F8F9FA), and Google shadow-depths
 - **Smooth Page Transitions** — Animated section switching via Framer Motion
 - **Responsive Design** — Sidebar collapses to a mobile drawer with hamburger menu
+- **Dark / Light Mode** — Toggle via header button, persists to localStorage, respects system preference
 - **Modular Architecture** — Production-ready file structure with separated data, components, pages, and utilities
+- **Auto-Deploy** — GitHub Actions CI/CD pipeline deploys on every push to `main`
 
 ## Pages
 
@@ -46,6 +50,8 @@ src/
 ├── utils/
 │   ├── getGreeting.js      # Time-based greeting helper
 │   └── index.js
+├── context/
+│   └── ThemeContext.jsx    # Dark/light mode provider + hook
 ├── components/
 │   ├── layout/             # App shell (Sidebar, MobileSidebar, Header)
 │   └── ui/                 # Reusable components (ProjectCard, TimelineItem)
@@ -92,6 +98,18 @@ npm run preview
 ```bash
 npm run lint
 ```
+
+## Deployment
+
+This project auto-deploys via **GitHub Actions**. Every push to `main` triggers a build and deploys to GitHub Pages.
+
+To set up on your own fork:
+
+1. Go to **Settings → Pages**
+2. Set **Source** to **GitHub Actions**
+3. Push to `main` — done!
+
+The workflow is defined in `.github/workflows/deploy.yml`.
 
 ## Customisation
 
