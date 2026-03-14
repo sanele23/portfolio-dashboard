@@ -38,16 +38,16 @@ export default function OverviewSection() {
     <section className="space-y-8">
       {/* Greeting */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-semibold text-google-grey-900 mb-1">
+        <h1 className="text-2xl md:text-3xl font-semibold text-google-grey-900 dark:text-google-grey-50 mb-1">
           {getGreeting()}, Visitor 👋
         </h1>
-        <p className="text-google-grey-600">
+        <p className="text-google-grey-600 dark:text-google-grey-400">
           Here&apos;s a snapshot of my portfolio at a glance.
         </p>
       </div>
 
       {/* Profile Hero Card */}
-      <div className="bg-white border border-google-grey-200 rounded-xl p-6 md:p-8 hover:shadow-google-hover transition-shadow">
+      <div className="bg-white dark:bg-google-grey-800 border border-google-grey-200 dark:border-google-grey-700 rounded-xl p-6 md:p-8 hover:shadow-google-hover transition-shadow">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
           {/* Profile picture */}
           <img
@@ -58,18 +58,18 @@ export default function OverviewSection() {
 
           {/* Bio */}
           <div className="flex-1 text-center sm:text-left">
-            <h2 className="text-xl md:text-2xl font-bold text-google-grey-900 tracking-tight">
+            <h2 className="text-xl md:text-2xl font-bold text-google-grey-900 dark:text-google-grey-50 tracking-tight">
               Sanele Krakra
             </h2>
             <p className="text-google-blue font-medium text-sm mt-0.5">
               Frontend Developer
             </p>
-            <div className="flex items-center justify-center sm:justify-start gap-1 mt-1 text-xs text-google-grey-500">
+            <div className="flex items-center justify-center sm:justify-start gap-1 mt-1 text-xs text-google-grey-500 dark:text-google-grey-400">
               <MapPin size={12} />
               <span>Cape Town, South Africa</span>
             </div>
 
-            <p className="mt-4 text-sm text-google-grey-600 leading-relaxed max-w-2xl">
+            <p className="mt-4 text-sm text-google-grey-600 dark:text-google-grey-400 leading-relaxed max-w-2xl">
               Frontend Engineer with 4+ years of experience building scalable,
               production-grade web platforms using React, TypeScript, and
               Next.js. Passionate about clean UI/UX design, component-driven
@@ -87,7 +87,7 @@ export default function OverviewSection() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-google-grey-300 text-sm font-medium text-google-grey-700 hover:border-google-grey-500 hover:text-google-grey-900 hover:shadow-google transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-google-grey-300 dark:border-google-grey-600 text-sm font-medium text-google-grey-700 dark:text-google-grey-300 hover:border-google-grey-500 hover:text-google-grey-900 dark:hover:text-google-grey-50 hover:shadow-google transition-all"
                   >
                     <Icon size={16} />
                     <span>{link.label}</span>
@@ -101,16 +101,18 @@ export default function OverviewSection() {
 
       {/* Quick Stats */}
       <div>
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-google-grey-500 mb-3">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-google-grey-500 dark:text-google-grey-400 mb-3">
           Quick Stats
         </h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((s) => (
             <div
               key={s.label}
-              className="bg-white border border-google-grey-200 rounded-xl p-5 hover:shadow-google-hover transition-shadow"
+              className="bg-white dark:bg-google-grey-800 border border-google-grey-200 dark:border-google-grey-700 rounded-xl p-5 hover:shadow-google-hover transition-shadow"
             >
-              <p className="text-sm text-google-grey-600 mb-1">{s.label}</p>
+              <p className="text-sm text-google-grey-600 dark:text-google-grey-400 mb-1">
+                {s.label}
+              </p>
               <p className={`text-3xl font-bold ${s.color}`}>{s.value}</p>
             </div>
           ))}
@@ -119,7 +121,7 @@ export default function OverviewSection() {
 
       {/* Recent Projects */}
       <div>
-        <h2 className="text-lg font-semibold text-google-grey-900 mb-4">
+        <h2 className="text-lg font-semibold text-google-grey-900 dark:text-google-grey-50 mb-4">
           Recent Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">

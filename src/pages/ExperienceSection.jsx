@@ -8,10 +8,10 @@ export default function ExperienceSection() {
 
   return (
     <section>
-      <h1 className="text-2xl md:text-3xl font-semibold text-google-grey-900 mb-1">
+      <h1 className="text-2xl md:text-3xl font-semibold text-google-grey-900 dark:text-google-grey-50 mb-1">
         Experience &amp; Education
       </h1>
-      <p className="text-google-grey-600 mb-8">
+      <p className="text-google-grey-600 dark:text-google-grey-400 mb-8">
         My professional journey and academic background.
       </p>
 
@@ -20,7 +20,7 @@ export default function ExperienceSection() {
         <div>
           <div className="flex items-center gap-2 mb-6">
             <Briefcase size={20} className="text-google-blue" />
-            <h2 className="text-lg font-semibold text-google-grey-900">
+            <h2 className="text-lg font-semibold text-google-grey-900 dark:text-google-grey-50">
               Work Experience
             </h2>
           </div>
@@ -35,7 +35,7 @@ export default function ExperienceSection() {
         <div>
           <div className="flex items-center gap-2 mb-6">
             <GraduationCap size={20} className="text-google-green" />
-            <h2 className="text-lg font-semibold text-google-grey-900">
+            <h2 className="text-lg font-semibold text-google-grey-900 dark:text-google-grey-50">
               Education
             </h2>
           </div>
