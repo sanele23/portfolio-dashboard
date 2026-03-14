@@ -1,17 +1,104 @@
-# React + Vite
+# Portfolio Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Google Workspace-inspired personal portfolio application built with React, Tailwind CSS, and Framer Motion. Features a clean dashboard layout with a collapsible sidebar, smooth page transitions, and a fully responsive design.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-FF0055?logo=framer&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Dashboard Layout** — Collapsible sidebar navigation + sticky header
+- **Google Workspace Aesthetic** — Clean whites, subtle greys (#F8F9FA), and Google shadow-depths
+- **Smooth Page Transitions** — Animated section switching via Framer Motion
+- **Responsive Design** — Sidebar collapses to a mobile drawer with hamburger menu
+- **Modular Architecture** — Production-ready file structure with separated data, components, pages, and utilities
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Pages
 
-## Expanding the ESLint configuration
+| Section                    | Description                                                                 |
+| -------------------------- | --------------------------------------------------------------------------- |
+| **Overview**               | Profile hero with bio, social links, quick stats cards, and recent projects |
+| **Projects**               | Grid of project cards with descriptions and tech tags                       |
+| **Tech Stack**             | Skill cloud of pill badges + proficiency progress bars                      |
+| **Experience & Education** | Split timeline with work experience and education history                   |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# portfolio-dashboard
+## Tech Stack
+
+- **React 19** — UI library
+- **Vite 8** — Build tool with HMR
+- **Tailwind CSS 3** — Utility-first styling with custom Google theme
+- **Framer Motion** — Page transition animations
+- **Lucide React** — Icon library
+- **ESLint** — Code linting
+
+## Project Structure
+
+```
+src/
+├── data/                   # Static content & constants
+│   ├── navItems.js
+│   ├── projects.js
+│   ├── experience.js
+│   ├── skills.js
+│   └── index.js
+├── utils/
+│   ├── getGreeting.js      # Time-based greeting helper
+│   └── index.js
+├── components/
+│   ├── layout/             # App shell (Sidebar, MobileSidebar, Header)
+│   └── ui/                 # Reusable components (ProjectCard, TimelineItem)
+├── pages/                  # Section-level page components
+│   ├── OverviewSection.jsx
+│   ├── ProjectsSection.jsx
+│   ├── TechStackSection.jsx
+│   └── ExperienceSection.jsx
+├── App.jsx                 # Thin root shell with AnimatePresence
+├── main.jsx
+└── index.css               # Tailwind directives
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+git clone https://github.com/sanele23/portfolio-dashboard.git
+cd portfolio-dashboard
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+### Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+### Linting
+
+```bash
+npm run lint
+```
+
+## Customisation
+
+- **Content** — Edit files in `src/data/` to update projects, experience, skills, and nav items
+- **Theme** — Modify `tailwind.config.js` to adjust Google-style colours and shadows
+- **Profile** — Update `src/pages/OverviewSection.jsx` for bio, social links, and profile image
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
