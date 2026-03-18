@@ -9,20 +9,20 @@ export default function Sidebar({
 }) {
   return (
     <aside
-      className={`hidden lg:flex flex-col border-r border-google-grey-300 dark:border-google-grey-700 bg-google-grey-50 dark:bg-google-grey-900 transition-all duration-200 ${
-        collapsed ? "w-[68px]" : "w-[260px]"
+      className={`hidden lg:flex flex-col bg-google-grey-50 dark:bg-google-grey-900 transition-all duration-200 border-r border-google-grey-200 dark:border-google-grey-700 ${
+        collapsed ? "w-[56px]" : "w-[240px]"
       }`}
     >
       {/* Logo area */}
-      <div className="flex items-center justify-between h-16 px-4 border-b border-google-grey-200 dark:border-google-grey-700">
+      <div className="flex items-center justify-between h-14 px-3 border-b border-google-grey-200 dark:border-google-grey-700">
         {!collapsed && (
-          <span className="text-lg font-semibold text-google-grey-900 dark:text-google-grey-50 tracking-tight truncate">
+          <span className="text-base font-semibold text-google-grey-900 dark:text-google-grey-50 tracking-tight truncate">
             SK's Portfolio
           </span>
         )}
         <button
           onClick={onToggleCollapse}
-          className="p-2 rounded-full hover:bg-google-grey-200 dark:hover:bg-google-grey-700 transition-colors text-google-grey-700 dark:text-google-grey-300"
+          className="p-1.5 rounded-full hover:bg-google-grey-200 dark:hover:bg-google-grey-700 transition-colors text-google-grey-700 dark:text-google-grey-300"
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
           <ChevronLeft
@@ -33,7 +33,7 @@ export default function Sidebar({
       </div>
 
       {/* Nav links */}
-      <nav className="flex-1 py-2 px-2 space-y-1">
+      <nav className="flex-1 py-1.5 px-1.5 space-y-0.5">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
@@ -41,15 +41,19 @@ export default function Sidebar({
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
-              className={`flex items-center w-full rounded-full px-3 py-2.5 text-sm font-medium transition-colors gap-3 ${
+              className={`flex items-center w-full rounded-lg px-2.5 py-2 text-sm font-medium transition-colors gap-2.5 ${
                 isActive
                   ? "bg-blue-50 dark:bg-blue-900/30 text-google-blue"
                   : "text-google-grey-700 dark:text-google-grey-300 hover:bg-google-grey-200 dark:hover:bg-google-grey-700"
               } ${collapsed ? "justify-center px-0" : ""}`}
               title={item.label}
             >
-              <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} />
-              {!collapsed && <span>{item.label}</span>}
+              <Icon
+                size={20}
+                className="shrink-0"
+                strokeWidth={isActive ? 2.2 : 1.8}
+              />
+              {!collapsed && <span className="truncate">{item.label}</span>}
             </button>
           );
         })}
@@ -57,7 +61,7 @@ export default function Sidebar({
 
       {/* Footer */}
       {!collapsed && (
-        <div className="p-4 border-t border-google-grey-200 dark:border-google-grey-700 text-xs text-google-grey-500 dark:text-google-grey-400">
+        <div className="p-3 border-t border-google-grey-200 dark:border-google-grey-700 text-xs text-google-grey-500 dark:text-google-grey-400">
           © 2026, Sanele Krakra
         </div>
       )}

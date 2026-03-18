@@ -1,17 +1,33 @@
 export const projects = [
   {
-    title: "TFG Insurance Platform",
+    title: "Cemetery Management System",
     description:
-      "A scalable insurance application platform within the VAS Credit Systems team, featuring multi-step user journeys, complex form validation, and structured state management.",
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Zustand"],
-    link: "#",
+      "A municipal cemetery management platform with grave search, interactive Leaflet maps, burial registration, and an admin dashboard with analytics charts and reporting.",
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Leaflet",
+      "Recharts",
+    ],
+    link: "https://sanele23.github.io/cemetary-app/",
   },
   {
-    title: "Builder.io CMS Integration",
+    title: "JobTracker",
     description:
-      "Implemented Builder.io as a headless CMS for TFG to streamline content management workflows and empower non-technical teams to manage UI content.",
-    tags: ["Builder.io", "React", "TypeScript", "REST APIs"],
-    link: "#",
+      "A modern Kanban-style job application tracking platform with drag-and-drop workflow management, CRUD job entries, search and status filtering, dashboard stats, dark mode, and optional Supabase authentication + Postgres persistence.",
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Zustand",
+      "React Hook Form",
+      "Zod",
+      "Supabase",
+    ],
+    link: "https://sanele23.github.io/job-tracker",
   },
   {
     title: "Portfolio Dashboard",

@@ -2,11 +2,11 @@ import { Briefcase, GraduationCap, Calendar } from "lucide-react";
 
 export default function TimelineItem({ item, dotColor }) {
   return (
-    <div className="relative">
+    <div className="relative group">
       <div
-        className={`absolute -left-[25px] top-1 w-3 h-3 rounded-full bg-white dark:bg-google-grey-800 border-2 ${dotColor}`}
+        className={`absolute -left-[25px] top-1 w-3 h-3 rounded-full bg-white dark:bg-google-grey-800 border-2 ${dotColor} transition-transform group-hover:scale-125`}
       />
-      <div className="bg-white dark:bg-google-grey-800 border border-google-grey-200 dark:border-google-grey-700 rounded-xl p-5 hover:shadow-google-hover transition-shadow">
+      <div className="bg-white/80 dark:bg-google-grey-800/80 backdrop-blur-sm border border-google-grey-200/50 dark:border-google-grey-700/50 rounded-xl p-5 hover:shadow-google-hover transition-all duration-300 hover:-translate-y-0.5">
         <div className="flex items-center gap-2 mb-1">
           {item.type === "work" ? (
             <Briefcase size={16} className="text-google-blue" />
