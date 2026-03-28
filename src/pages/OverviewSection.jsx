@@ -174,9 +174,9 @@ export default function OverviewSection() {
             <h2 className="text-lg font-semibold text-google-grey-900 dark:text-google-grey-50">
               Recent Projects
             </h2>
-            <span className="text-xs text-google-grey-500 dark:text-google-grey-400 flex items-center gap-1">
+            {/* <span className="text-xs text-google-grey-500 dark:text-google-grey-400 flex items-center gap-1">
               Scroll for more <ArrowRight size={12} />
-            </span>
+            </span> */}
           </div>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">

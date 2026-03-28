@@ -14,9 +14,9 @@ export const projects = [
     link: "https://sanele23.github.io/cemetary-app/",
   },
   {
-    title: "JobTracker",
+    title: "Cebisa Career Builder",
     description:
-      "A modern Kanban-style job application tracking platform with drag-and-drop workflow management, CRUD job entries, search and status filtering, dashboard stats, dark mode, and optional Supabase authentication + Postgres persistence.",
+      "Cebisa Career Builder helps individuals receive personalized recommendations to upskill or switch careers by suggesting relevant courses and skills to focus on. It also features a job tracker to manage applications and monitor progress.",
     tags: [
       "Next.js",
       "React",
@@ -27,14 +27,14 @@ export const projects = [
       "Zod",
       "Supabase",
     ],
-    link: "https://sanele23.github.io/job-tracker",
+    link: "https://cebisa-career-builder.vercel.app/",
   },
   {
-    title: "Portfolio Dashboard",
+    title: "PayBridge",
     description:
-      "A Google Workspace-inspired personal portfolio built with a dashboard layout, responsive sidebar navigation, and modern UI components.",
-    tags: ["React", "Tailwind CSS", "Lucide", "Vite"],
-    link: "#",
+      "PayBridge helps students and families pay for education abroad. Start with BYU-Pathway and other trusted institutions. No hidden fees, no hassle.",
+    tags: ["React", "Tailwind CSS", "TypeScript", "Next.js"],
+    link: "https://payments-frontend-iu32.vercel.app/",
   },
   {
     title: "HR Focus Web Applications",
