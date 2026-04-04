@@ -1,90 +1,125 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { skills } from "../data";
-import { ScrollReveal, AnimatedBar } from "../components/ui";
+import ZustandBearIcon from "../components/icons/ZustandBearIcon";
+import BuilderioIcon from "../components/icons/BuilderioIcon";
+import MSWIcon from "../components/icons/MSWIcon";
+import SwaggerIcon from "../components/icons/SwaggerIcon";
+import RestApiIcon from "../components/icons/RestApiIcon";
+import ReactHookFormIcon from "../components/icons/ReactHookFormIcon";
+import { ScrollReveal } from "../components/ui";
 
 export default function TechStackSection() {
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // Define how many items per page (matching the 6 columns in your image)
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(skills.length / itemsPerPage);
+
+  // Get current slice of skills
+  const currentSkills = skills.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage,
+  );
+
   return (
-    <section>
-      <ScrollReveal>
-        <h1 className="text-2xl md:text-3xl font-semibold text-google-grey-900 dark:text-google-grey-50 mb-1">
-          Tech Stack
-        </h1>
-        <p className="text-google-grey-600 dark:text-google-grey-400 mb-8">
-          Technologies and tools I work with daily.
-        </p>
-      </ScrollReveal>
+    <section className="py-24 bg-google-grey-50 dark:bg-google-grey-900/50">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
+        {/* Header - Styled like the attachment */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+          <ScrollReveal>
+            <div className="space-y-4">
+              <h2 className="font-headline text-4xl font-bold tracking-tight text-google-grey-900 dark:text-white">
+                The Modern Stack
+              </h2>
+              <p className="text-google-grey-600 dark:text-google-grey-400 max-w-xl text-lg leading-relaxed">
+                Leveraging the latest tools to build scalable and maintainable
+                enterprise applications.
+              </p>
+            </div>
+          </ScrollReveal>
 
-      {/* Skill cloud with glassmorphism */}
-      <ScrollReveal>
-        <div className="relative overflow-hidden bg-white/70 dark:bg-google-grey-800/70 backdrop-blur-lg border border-google-grey-200/50 dark:border-google-grey-700/50 rounded-2xl p-8 shadow-google">
-          {/* Background gradient accent */}
-          <div className="absolute -top-16 -right-16 w-48 h-48 bg-gradient-to-br from-google-blue/10 to-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-gradient-to-br from-google-green/10 to-teal-500/10 rounded-full blur-3xl" />
-
-          <div className="relative flex flex-wrap gap-3 justify-center">
-            {skills.map((skill, i) => (
-              <motion.span
-                key={skill.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.03, duration: 0.3 }}
-                whileHover={{ scale: 1.1, y: -2 }}
-                className={`px-4 py-2 text-sm font-medium rounded-full ${skill.color} shadow-sm cursor-default transition-shadow hover:shadow-md`}
+          {/* Pagination Indicators (Right-aligned like the image) */}
+          <div className="flex gap-1.5 mb-2">
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i)}
+                className="group py-2 px-1 focus:outline-none"
               >
-                {skill.name}
-              </motion.span>
+                <div
+                  className={`h-1 rounded-full transition-all duration-300 ${
+                    currentPage === i
+                      ? "w-10 bg-brand-primary"
+                      : "w-4 bg-google-grey-300 dark:bg-google-grey-700 group-hover:bg-google-grey-400"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>
-      </ScrollReveal>
 
-      {/* Proficiency breakdown */}
-      <ScrollReveal delay={0.2}>
-        <h2 className="text-lg font-semibold text-google-grey-900 dark:text-google-grey-50 mt-10 mb-4">
-          Proficiency
-        </h2>
-      </ScrollReveal>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {[
-          {
-            category: "Frontend",
-            level: 95,
-            color: "bg-gradient-to-r from-google-blue to-blue-500",
-          },
-          {
-            category: "DevOps & CI/CD",
-            level: 70,
-            color: "bg-gradient-to-r from-google-green to-emerald-500",
-          },
-          {
-            category: "UI/UX Design",
-            level: 75,
-            color: "bg-gradient-to-r from-google-yellow to-amber-400",
-          },
-          {
-            category: "Backend",
-            level: 55,
-            color: "bg-gradient-to-r from-google-red to-rose-500",
-          },
-        ].map((item, i) => (
-          <ScrollReveal key={item.category} delay={i * 0.1}>
-            <div className="bg-white/80 dark:bg-google-grey-800/80 backdrop-blur-sm border border-google-grey-200 dark:border-google-grey-700 rounded-xl p-5 hover:shadow-google-hover transition-all">
-              <div className="flex justify-between mb-3">
-                <span className="text-sm font-medium text-google-grey-800 dark:text-google-grey-200">
-                  {item.category}
-                </span>
-                <span className="text-sm font-semibold text-google-grey-600 dark:text-google-grey-400">
-                  {item.level}%
-                </span>
-              </div>
-              <AnimatedBar
-                level={item.level}
-                color={item.color}
-                delay={i * 0.15}
-              />
-            </div>
-          </ScrollReveal>
-        ))}
+        {/* Animated Grid Container */}
+        <div className="min-h-[250px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentPage}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6"
+            >
+              {currentSkills.map((skill) => (
+                <div
+                  key={skill.name}
+                  className="bg-white dark:bg-google-grey-800 border border-google-grey-100 dark:border-google-grey-700 rounded-[32px] p-8 flex flex-col items-center justify-center gap-5 shadow-sm hover:shadow-xl transition-all duration-300"
+                >
+                  <div
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center text-xl font-bold ${skill.color}`}
+                  >
+                    {(() => {
+                      switch (skill.name.toLowerCase()) {
+                        case "zustand":
+                          return (
+                            <ZustandBearIcon className="w-10 h-10 object-contain" />
+                          );
+
+                        case "msw":
+                          return (
+                            <MSWIcon className="w-10 h-10 object-contain" />
+                          );
+                        case "swagger":
+                          return (
+                            <SwaggerIcon className="w-10 h-10 object-contain" />
+                          );
+                        case "restfulapis":
+                          return (
+                            <RestApiIcon className="w-10 h-10 object-contain" />
+                          );
+                        case "reacthookform":
+                          return (
+                            <ReactHookFormIcon className="w-10 h-10 object-contain" />
+                          );
+                        default:
+                          return (
+                            <img
+                              src={`https://skillicons.dev/icons?i=${skill.name.toLowerCase().replace(" ", "")}`}
+                              alt={skill.name}
+                              className="w-10 h-10 object-contain"
+                            />
+                          );
+                      }
+                    })()}
+                  </div>
+                  <span className="font-bold text-google-grey-900 dark:text-white text-sm text-center">
+                    {skill.name}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

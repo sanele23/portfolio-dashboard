@@ -14,6 +14,7 @@ export default {
           "Roboto",
           "sans-serif",
         ],
+        headline: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
       },
       colors: {
         google: {
@@ -35,6 +36,11 @@ export default {
             900: "#202124",
           },
         },
+        brand: {
+          primary: "#0058bd",
+          "primary-hover": "#1765CC",
+          secondary: "#006e2c",
+        },
       },
       boxShadow: {
         google:
@@ -43,6 +49,18 @@ export default {
           "0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15)",
         "google-modal":
           "0 8px 10px 1px rgba(60,64,67,0.15), 0 3px 14px 2px rgba(60,64,67,0.12), 0 5px 5px -3px rgba(60,64,67,0.2)",
+        ambient: "0 32px 64px -12px rgba(24, 28, 32, 0.10)",
+        "ambient-dark": "0 32px 64px -12px rgba(0, 0, 0, 0.30)",
+      },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-out",
+        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
     },
   },
