@@ -36,25 +36,25 @@ export const projects = [
     tags: ["React", "Tailwind CSS", "TypeScript", "Next.js"],
     link: "https://payments-frontend-iu32.vercel.app/",
   },
-  {
-    title: "HR Focus Web Applications",
-    description:
-      "Built and maintained internal web applications for HR operations, including data cleaning tools and SQL-driven reporting dashboards.",
-    tags: ["ASP.NET", "C#", "JavaScript", "jQuery", "MySQL"],
-    link: "#",
-  },
-  {
-    title: "LERM Corp. Client Websites",
-    description:
-      "Designed and developed responsive client websites with custom WordPress themes, interactive prototypes, and refined UI/UX workflows.",
-    tags: ["WordPress", "Divi", "Adobe XD", "HTML", "CSS"],
-    link: "#",
-  },
-  {
-    title: "CI/CD Pipeline Automation",
-    description:
-      "Set up and maintained Azure DevOps pipelines for automated builds, pull request reviews, and controlled production deployments across frontend projects.",
-    tags: ["Azure DevOps", "Docker", "Git", "CI/CD"],
-    link: "#",
-  },
+  // {
+  //   title: "HR Focus Web Applications",
+  //   description:
+  //     "Built and maintained internal web applications for HR operations, including data cleaning tools and SQL-driven reporting dashboards.",
+  //   tags: ["ASP.NET", "C#", "JavaScript", "jQuery", "MySQL"],
+  //   link: "#",
+  // },
+  // {
+  //   title: "LERM Corp. Client Websites",
+  //   description:
+  //     "Designed and developed responsive client websites with custom WordPress themes, interactive prototypes, and refined UI/UX workflows.",
+  //   tags: ["WordPress", "Divi", "Adobe XD", "HTML", "CSS"],
+  //   link: "#",
+  // },
+  // {
+  //   title: "CI/CD Pipeline Automation",
+  //   description:
+  //     "Set up and maintained Azure DevOps pipelines for automated builds, pull request reviews, and controlled production deployments across frontend projects.",
+  //   tags: ["Azure DevOps", "Docker", "Git", "CI/CD"],
+  //   link: "#",
+  // },
 ];
