@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,29 +15,46 @@
 
   body {
     margin: 0;
+    font-family: "Sora", system-ui, sans-serif;
+    background: #0f0f0f;
+    color: #f0f0f0;
+    cursor: crosshair;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #ffffff;
+    color: #000000;
   }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
   }
 
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #0f0f0f;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #dadce0;
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
   }
 
   .dark ::-webkit-scrollbar-thumb {
-    background: #5f6368;
+    background: rgba(255, 255, 255, 0.2);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #bdc1c6;
+    background: #ffffff;
+  }
+
+  a,
+  button,
+  input,
+  textarea {
+    cursor: crosshair;
   }
 }
 
@@ -53,6 +72,20 @@
   }
 
   .card-base {
-    @apply bg-white dark:bg-google-grey-800 border border-google-grey-200 dark:border-google-grey-700 rounded-2xl transition-all duration-300;
+    @apply bg-surface border border-outline-variant rounded-md transition-all duration-300;
+  }
+
+  .scanline {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(255, 255, 255, 0.02) 50%
+    );
+    background-size: 100% 4px;
+  }
+
+  .cyan-glow:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
+    border-color: #ffffff;
   }
 }

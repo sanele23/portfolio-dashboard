@@ -31,70 +31,77 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="py-24 bg-white dark:bg-google-grey-900 transition-colors">
+    <section className="relative py-16 md:py-20 bg-background overflow-hidden">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:96px_96px]" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <ScrollReveal>
-          <div className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-blue-600 to-indigo-700 rounded-3xl p-12 md:p-20 text-center text-white">
-            {/* Decorative orbs */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full translate-x-1/3 -translate-y-1/3 blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-60 h-60 bg-blue-300/10 rounded-full -translate-x-1/3 translate-y-1/3 blur-3xl pointer-events-none" />
+          <div className="relative z-10 border border-outline-variant bg-black/35 p-5 md:p-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-outline-variant pb-5 mb-7">
+              <div className="flex items-end gap-3 md:gap-4">
+                <span className="font-mono text-lg md:text-2xl text-google-grey-100 font-bold tracking-widest">
+                  05 //
+                </span>
+                <h2 className="font-headline text-3xl md:text-5xl font-extrabold tracking-tight text-google-grey-50 leading-none uppercase">
+                  Contact Node
+                </h2>
+              </div>
 
-            <div className="relative z-10 space-y-8 max-w-3xl mx-auto">
-              {/* Label */}
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-200">
-                <span className="w-6 h-px bg-blue-300/50" />
-                Get In Touch
-                <span className="w-6 h-px bg-blue-300/50" />
-              </span>
+              <div className="inline-flex items-center gap-2 border border-outline-variant px-3 py-2 text-google-grey-400 text-[0.7rem] md:text-xs font-mono uppercase tracking-[0.16em]">
+                <span className="w-2 h-2 rounded-full bg-google-grey-300" />
+                CHANNEL_READY
+              </div>
+            </div>
 
-              {/* Heading */}
-              <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                Let&apos;s build something{" "}
-                <br className="hidden md:block" />
-                exceptional together.
-              </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-start">
+              <div className="lg:col-span-5 space-y-4">
+                <p className="text-google-grey-400 text-base md:text-lg leading-relaxed max-w-md">
+                  Currently accepting new projects and consulting opportunities.
+                  Reach out and let&apos;s start the conversation.
+                </p>
 
-              <p className="text-blue-100 text-lg max-w-xl mx-auto leading-relaxed">
-                Currently accepting new projects and consulting opportunities.
-                Reach out and let&apos;s start the conversation.
-              </p>
+                <div className="flex flex-wrap gap-2">
+                  {socialLinks.map(({ icon: Icon, label, href }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target={href.startsWith("mailto:") ? undefined : "_blank"}
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 border border-outline-variant px-3 py-2 text-[0.68rem] font-mono uppercase tracking-widest text-google-grey-300 hover:text-google-grey-50 hover:border-google-grey-300 transition-colors"
+                      aria-label={label}
+                    >
+                      <Icon size={14} />
+                      {label}
+                    </a>
+                  ))}
+                </div>
+              </div>
 
-              {/* Email form */}
-              <form
-                onSubmit={handleContact}
-                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-              >
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 rounded-xl bg-white/15 border border-white/20 placeholder:text-blue-200/70 text-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-all text-sm"
-                  aria-label="Your email address"
-                />
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-brand-primary px-8 py-4 rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-transform shadow-xl shrink-0"
-                >
-                  <Send size={16} />
-                  Contact Me
-                </button>
-              </form>
-
-              {/* Social icons */}
-              <div className="flex justify-center gap-4 pt-2">
-                {socialLinks.map(({ icon: Icon, label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target={href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                    className="p-3.5 rounded-full bg-white/15 hover:bg-white/25 transition-all hover:scale-110 active:scale-95"
-                    aria-label={label}
-                  >
-                    <Icon size={22} />
-                  </a>
-                ))}
+              <div className="lg:col-span-7 border border-outline-variant bg-background/60 p-4 md:p-5">
+                <form onSubmit={handleContact} className="space-y-3">
+                  <label className="block text-[0.68rem] font-mono uppercase tracking-widest text-google-grey-500">
+                    Email Signal
+                  </label>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="name@domain.com"
+                      className="flex-1 h-11 px-3 border border-outline-variant bg-background text-google-grey-100 placeholder:text-google-grey-500 focus:outline-none focus:border-google-grey-300 transition-colors text-sm"
+                      aria-label="Your email address"
+                    />
+                    <button
+                      type="submit"
+                      className="inline-flex h-11 items-center justify-center gap-2 border border-google-grey-100 text-google-grey-100 px-4 text-xs font-mono uppercase tracking-widest hover:bg-google-grey-100 hover:text-black transition-colors shrink-0"
+                    >
+                      <Send size={14} />
+                      Contact Me
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

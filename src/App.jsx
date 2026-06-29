@@ -5,13 +5,16 @@ import TechStackSection from "./pages/TechStackSection";
 import ProjectsSection from "./pages/ProjectsSection";
 import ExperienceSection from "./pages/ExperienceSection";
 import ContactSection from "./pages/ContactSection";
+import { BackgroundGrid, CustomCursor } from "./components/ui";
 
 export default function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-white dark:bg-google-grey-900 text-google-grey-900 dark:text-google-grey-50 transition-colors duration-200">
+      <div className="relative min-h-screen overflow-x-hidden bg-background text-google-grey-50 selection:bg-white selection:text-black">
+        <BackgroundGrid />
+        <CustomCursor />
         <Navbar />
-        <main>
+        <main className="relative z-10">
           {/* Hero / Overview — id used by "Back to top" links */}
           <div id="overview">
             <OverviewSection />

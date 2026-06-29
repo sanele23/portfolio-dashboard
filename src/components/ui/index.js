@@ -5,3 +5,5 @@ export { default as AnimatedBar } from "./AnimatedBar";
 export { default as AnimatedCounter } from "./AnimatedCounter";
 export { default as TiltCard } from "./TiltCard";
 export { default as FloatingParticles } from "./FloatingParticles";
+export { default as BackgroundGrid } from "./BackgroundGrid";
+export { default as CustomCursor } from "./CustomCursor";

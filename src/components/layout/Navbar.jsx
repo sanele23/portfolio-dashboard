@@ -1,129 +1,202 @@
-import { useState, useEffect } from "react";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import { Menu, X, Search, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../../context/ThemeContext";
+import profileImg from "../../assets/profile-image.png";
 
 const navLinks = [
-  { label: "Work", href: "#work" },
+  { label: "Overview", href: "#overview" },
   { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#work" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const { dark, toggleTheme } = useTheme();
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeLabel, setActiveLabel] = useState("Overview");
+
+  const sections = useMemo(
+    () =>
+      navLinks.map((link) => ({
+        ...link,
+        id: link.href.replace("#", ""),
+      })),
+    []
+  );
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+
+      const offsetY = window.scrollY + 160;
+      let current = sections[0]?.label ?? "Overview";
+
+      for (const section of sections) {
+        const el = document.getElementById(section.id);
+        if (el && el.offsetTop <= offsetY) {
+          current = section.label;
+        }
+      }
+
+      setActiveLabel(current);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
+  }, [sections]);
+
+  useEffect(() => {
+    const onHotkey = (e) => {
+      if (e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        const tag = e.target?.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        e.preventDefault();
+        const skills = document.getElementById("skills");
+        skills?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+
+    window.addEventListener("keydown", onHotkey);
+    return () => window.removeEventListener("keydown", onHotkey);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? "bg-white/90 dark:bg-google-grey-900/90 backdrop-blur-xl shadow-sm"
-          : "bg-transparent"
+          ? "bg-background/95 backdrop-blur-xl border-outline-variant"
+          : "bg-background/85 border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Brand */}
-        <a
-          href="#"
-          className="font-headline text-lg font-bold tracking-tight text-google-grey-900 dark:text-white hover:text-brand-primary transition-colors"
-        >
-          SK&apos;s Portfolio
-        </a>
+      <div className="w-full px-4 md:px-6 lg:px-8 h-20 flex items-center gap-3 md:gap-5">
+        {/* Left cluster */}
+        <div className="min-w-0 flex items-center gap-3 md:gap-4">
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            className="p-2 rounded-sm text-google-grey-100 hover:bg-google-grey-800/80 transition-colors"
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
 
-        {/* Desktop nav links */}
-        <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="px-4 py-2 text-sm font-medium text-google-grey-700 dark:text-google-grey-300 hover:text-google-grey-900 dark:hover:text-white hover:bg-google-grey-100 dark:hover:bg-google-grey-800 rounded-lg transition-all"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+          <div className="min-w-0 hidden sm:flex items-center gap-3 text-google-grey-100 font-mono tracking-wider">
+            <span className="text-2xl font-bold leading-none">SYS_ARCH</span>
+            <span className="text-google-grey-500 text-2xl leading-none">//</span>
+            <span className="text-2xl font-bold uppercase leading-none">{activeLabel}</span>
+            <span className="text-google-grey-600 text-2xl leading-none">/</span>
+            <span className="text-google-grey-500 text-sm md:text-[0.95rem] truncate">
+              status:<span className="text-google-grey-300">online</span>
+            </span>
+          </div>
+        </div>
+
+        {/* Command bar */}
+        <button
+          onClick={() => {
+            const skills = document.getElementById("skills");
+            skills?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+          className="hidden md:flex flex-1 max-w-xl items-center gap-3 h-14 px-6 border border-outline-variant/90 bg-google-grey-900/70 hover:border-google-grey-400/50 transition-colors text-google-grey-500"
+          aria-label="Open command actions"
+        >
+          <Search size={27} className="text-google-grey-500" strokeWidth={1.6} />
+          <span className="font-mono uppercase tracking-[0.16em] text-[0.68rem] lg:text-[0.82rem] truncate">
+            Press '/' for commands...
+          </span>
+        </button>
 
         {/* Right actions */}
-        <div className="flex items-center gap-2">
-          {/* Theme toggle */}
+        <div className="ml-auto flex items-center gap-1.5 md:gap-2">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-google-grey-100 dark:hover:bg-google-grey-800 transition-colors text-google-grey-700 dark:text-google-grey-300"
+            className="h-14 w-14 inline-flex items-center justify-center text-google-grey-300 hover:text-white hover:bg-google-grey-800/80 transition-colors"
             aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+            title="Display settings"
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={dark ? "sun" : "moon"}
-                initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
-                animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
-                transition={{ duration: 0.2 }}
-              >
-                {dark ? <Sun size={18} /> : <Moon size={18} />}
-              </motion.div>
-            </AnimatePresence>
+            <Settings size={25} strokeWidth={1.8} />
           </button>
 
-          {/* Hire Me CTA */}
           <a
-            href="mailto:sanele23@live.com"
-            className="hidden md:inline-flex items-center bg-brand-primary hover:bg-brand-primary-hover text-white px-5 py-2 rounded-lg text-sm font-semibold transition-all hover:-translate-y-px active:scale-95"
+            href="#contact"
+            className="h-14 w-14 inline-flex items-center justify-center text-google-grey-300 hover:text-white hover:bg-google-grey-800/80 transition-colors font-mono text-2xl font-bold"
+            aria-label="Jump to contact section"
+            title="Quick action"
           >
-            Hire Me
+            &gt;_
           </a>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen((v) => !v)}
-            className="p-2 rounded-lg hover:bg-google-grey-100 dark:hover:bg-google-grey-800 transition-colors text-google-grey-700 dark:text-google-grey-300 md:hidden"
-            aria-label="Toggle mobile menu"
-            aria-expanded={mobileOpen}
+          <a
+            href="#overview"
+            className="h-14 w-14 shrink-0 overflow-hidden border border-outline-variant hover:border-google-grey-300 transition-colors"
+            aria-label="Go to top"
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            <img
+              src={profileImg}
+              alt="Profile avatar"
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+          </a>
         </div>
       </div>
 
-      {/* Mobile menu drawer */}
+      {/* Navigation drawer */}
       <AnimatePresence>
-        {mobileOpen && (
+        {menuOpen && (
+          <>
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMenuOpen(false)}
+              className="fixed inset-0 z-40 bg-black/40"
+              aria-label="Close navigation overlay"
+            />
+
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden bg-white/95 dark:bg-google-grey-900/95 backdrop-blur-xl border-t border-google-grey-200/50 dark:border-google-grey-700/50"
+            initial={{ x: -28, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -28, opacity: 0 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="absolute left-4 top-20 z-50 w-[min(86vw,340px)] border border-outline-variant bg-background/95 backdrop-blur-xl shadow-google-modal"
           >
-            <nav className="px-6 py-4 space-y-1" aria-label="Mobile navigation">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-medium text-google-grey-700 dark:text-google-grey-300 hover:text-google-grey-900 dark:hover:text-white hover:bg-google-grey-100 dark:hover:bg-google-grey-800 rounded-lg transition-all"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="pt-2">
+            <nav className="p-3" aria-label="Primary navigation">
+              {navLinks.map((link) => {
+                const active = link.label === activeLabel;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block px-4 py-3 text-xs font-mono tracking-[0.2em] transition-all uppercase border-l-2 ${
+                      active
+                        ? "text-white border-white bg-google-grey-800/65"
+                        : "text-google-grey-300 border-transparent hover:text-white hover:border-white"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+
+              <div className="pt-2 px-1">
                 <a
                   href="mailto:sanele23@live.com"
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-semibold text-center bg-brand-primary hover:bg-brand-primary-hover text-white rounded-lg transition-all"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 text-xs font-mono font-bold text-center bg-white hover:bg-google-grey-100 text-black transition-all uppercase tracking-[0.2em]"
                 >
-                  Hire Me
+                  Reach Out!
                 </a>
               </div>
             </nav>
           </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

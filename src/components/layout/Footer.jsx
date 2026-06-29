@@ -1,16 +1,16 @@
 export default function Footer() {
   return (
-    <footer className="bg-google-grey-50 dark:bg-google-grey-900 border-t border-google-grey-200 dark:border-google-grey-800 transition-colors">
+    <footer className="bg-background border-t border-outline-variant transition-colors relative z-10">
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-10 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-sm text-google-grey-500 dark:text-google-grey-400">
-          © 2026 Sanele Krakra. Built with React &amp; Tailwind CSS.
+        <p className="text-xs font-mono tracking-wide text-google-grey-400 uppercase">
+          STATUS_OK // © 2026 Sanele Krakra
         </p>
         <div className="flex items-center gap-6">
           <a
             href="https://github.com/sanele23"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-google-grey-500 hover:text-google-grey-900 dark:hover:text-white transition-colors"
+            className="text-xs font-mono tracking-wider text-google-grey-400 hover:text-white transition-colors uppercase underline underline-offset-4 decoration-outline-variant hover:decoration-white"
           >
             GitHub
           </a>
@@ -18,13 +18,13 @@ export default function Footer() {
             href="https://www.linkedin.com/in/sanele-krakra"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-google-grey-500 hover:text-google-grey-900 dark:hover:text-white transition-colors"
+            className="text-xs font-mono tracking-wider text-google-grey-400 hover:text-white transition-colors uppercase underline underline-offset-4 decoration-outline-variant hover:decoration-white"
           >
             LinkedIn
           </a>
           <a
             href="mailto:sanele23@live.com"
-            className="text-sm text-google-grey-500 hover:text-google-grey-900 dark:hover:text-white transition-colors"
+            className="text-xs font-mono tracking-wider text-google-grey-400 hover:text-white transition-colors uppercase underline underline-offset-4 decoration-outline-variant hover:decoration-white"
           >
             Email
           </a>
