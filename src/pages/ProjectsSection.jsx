@@ -96,6 +96,14 @@ export default function ProjectsSection() {
           </div>
         </ScrollReveal>
 
+        <ScrollReveal delay={0.05}>
+          <div className="relative z-10 mb-6 md:mb-7 border border-amber-300/40 bg-amber-300/5 px-4 py-3">
+            <p className="font-mono text-[0.68rem] md:text-xs uppercase tracking-[0.16em] text-amber-200">
+              Note: Current projects are being updated — stay tuned.
+            </p>
+          </div>
+        </ScrollReveal>
+
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
           {projects.map((p, i) => (
             <ScrollReveal key={p.title} delay={i * 0.08}>

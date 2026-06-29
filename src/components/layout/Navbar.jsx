@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Menu, X, Search, Settings } from "lucide-react";
+import { Menu, X, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../../context/ThemeContext";
 import profileImg from "../../assets/profile-image.png";
@@ -30,6 +30,14 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
+
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 4;
+      if (nearBottom) {
+        setActiveLabel(sections[sections.length - 1]?.label ?? "Contact");
+        return;
+      }
 
       const offsetY = window.scrollY + 160;
       let current = sections[0]?.label ?? "Overview";
@@ -95,21 +103,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Command bar */}
-        <button
-          onClick={() => {
-            const skills = document.getElementById("skills");
-            skills?.scrollIntoView({ behavior: "smooth", block: "start" });
-          }}
-          className="hidden md:flex flex-1 max-w-xl items-center gap-3 h-14 px-6 border border-outline-variant/90 bg-google-grey-900/70 hover:border-google-grey-400/50 transition-colors text-google-grey-500"
-          aria-label="Open command actions"
-        >
-          <Search size={27} className="text-google-grey-500" strokeWidth={1.6} />
-          <span className="font-mono uppercase tracking-[0.16em] text-[0.68rem] lg:text-[0.82rem] truncate">
-            Press '/' for commands...
-          </span>
-        </button>
-
         {/* Right actions */}
         <div className="ml-auto flex items-center gap-1.5 md:gap-2">
           <button
@@ -123,6 +116,7 @@ export default function Navbar() {
 
           <a
             href="#contact"
+            onClick={() => setActiveLabel("Contact")}
             className="h-14 w-14 inline-flex items-center justify-center text-google-grey-300 hover:text-white hover:bg-google-grey-800/80 transition-colors font-mono text-2xl font-bold"
             aria-label="Jump to contact section"
             title="Quick action"
@@ -132,6 +126,7 @@ export default function Navbar() {
 
           <a
             href="#overview"
+            onClick={() => setActiveLabel("Overview")}
             className="h-14 w-14 shrink-0 overflow-hidden border border-outline-variant hover:border-google-grey-300 transition-colors"
             aria-label="Go to top"
           >
@@ -173,7 +168,10 @@ export default function Navbar() {
                   <a
                     key={link.label}
                     href={link.href}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => {
+                      setActiveLabel(link.label);
+                      setMenuOpen(false);
+                    }}
                     className={`block px-4 py-3 text-xs font-mono tracking-[0.2em] transition-all uppercase border-l-2 ${
                       active
                         ? "text-white border-white bg-google-grey-800/65"
